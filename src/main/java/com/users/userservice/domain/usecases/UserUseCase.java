@@ -1,6 +1,6 @@
 package com.users.userservice.domain.usecases;
 
-import com.users.userservice.domain.model.User;
+import com.users.userservice.domain.model.UserModel;
 import com.users.userservice.domain.ports.input.UserServicePort;
 import com.users.userservice.domain.ports.output.UserPersistencePort;
 
@@ -13,7 +13,7 @@ public class UserUseCase implements UserServicePort {
     }
 
     @Override
-    public void save(User user) {
+    public void save(UserModel user) {
         userPersistencePort.save(user);
     }
 }
