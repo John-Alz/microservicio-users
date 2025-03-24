@@ -6,6 +6,7 @@ import com.users.userservice.infrastructure.mappers.UserEntityMapper;
 import com.users.userservice.infrastructure.repositories.mysql.UserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,9 +16,14 @@ public class UserPersistenceAdapter implements UserPersistencePort {
 
     private final UserRepository userRepository;
     private final UserEntityMapper userEntityMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void save(UserModel user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println("Guardando usuario: " + user.getFirstName());
+        System.out.println("Guardando role: " + user.getRole().getId());
+        System.out.println("Guardando role: " + user.getRole().getName());
         userRepository.save(userEntityMapper.modelToEntity(user));
     }
 }

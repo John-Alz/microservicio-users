@@ -20,7 +20,9 @@ public class RolePersistenceAdapter implements RolePersistencePort {
 
     @Override
     public void save(RoleModel roleModel) {
+        System.out.println("Guardando rol: " + roleModel);
         roleRepository.save(roleEntityMapper.modelToEntity(roleModel));
     }
+
 
 }

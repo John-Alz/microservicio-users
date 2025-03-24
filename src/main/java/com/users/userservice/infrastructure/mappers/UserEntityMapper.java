@@ -26,6 +26,6 @@ public interface UserEntityMapper {
         return roleEntity;
     }
 
-    UserModel userEntityToModel(UserEntity userEntity);
+    UserModel entityToModel(UserEntity userEntity);
 
 }

@@ -20,6 +20,7 @@ public class UserServiceImpl implements IUserService {
     @Override
     public SaveUserResponse saveUser(SaveUserRequest saveUserRequest) {
         userServicePort.save(userDtoMapper.requestToModel(saveUserRequest));
+        System.out.println(saveUserRequest.roleId());
         return new SaveUserResponse("Usuario creado", LocalDateTime.now());
     }
 }

@@ -3,6 +3,7 @@ package com.users.userservice.infrastructure.endpoints.rest;
 import com.users.userservice.application.dto.request.SaveRoleRequest;
 import com.users.userservice.application.dto.response.SaveRoleResponse;
 import com.users.userservice.application.services.IRoleService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class RoleController {
     private final IRoleService roleService;
 
     @PostMapping
-    private ResponseEntity<SaveRoleResponse> save(@RequestBody SaveRoleRequest saveRoleRequest) {
+    private ResponseEntity<SaveRoleResponse> save(@Valid @RequestBody SaveRoleRequest saveRoleRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(roleService.saveRole(saveRoleRequest));
     }
 

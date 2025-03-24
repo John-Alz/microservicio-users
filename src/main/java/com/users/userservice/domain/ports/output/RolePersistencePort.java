@@ -8,4 +8,5 @@ public interface RolePersistencePort {
 
     void save(RoleModel roleModel);
 
+
 }

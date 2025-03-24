@@ -20,6 +20,8 @@ public class UserController {
 
     @PostMapping
     private ResponseEntity<SaveUserResponse> save(@RequestBody SaveUserRequest saveUserRequest) {
+        System.out.println("Role ID recibido: " + saveUserRequest.roleId());
+
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.saveUser(saveUserRequest));
     }
 }
