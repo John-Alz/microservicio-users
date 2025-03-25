@@ -16,4 +16,10 @@ public class DomainConstants {
     public static final String REGEX_PHONE_NUMBER = "^\\+?[0-9]{1,13}$";
     public static final String REGEX_IDENTITY_NUMBER = "^[0-9]+$";
 
+    public static final String REQUIRED_NAME_ROLE = "El nombre del role es obligatorio.";
+    public static final String REQUIRED_DESCRIPTION_ROLE = "La descripcion del role es obligatoria.";
+
+    public static final int MAX_LENGTH_NAME_ROLE = 20;
+    public static final int MAX_LENGTH_DESCRIPTION_ROLE = 50;
+
 }

@@ -1,5 +1,6 @@
 package com.users.userservice.domain.usecases;
 
+import com.users.userservice.domain.exceptions.RoleAlreadyExist;
 import com.users.userservice.domain.model.RoleModel;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +19,9 @@ class RoleUseCaseTest {
     @Mock
     private RolePersistencePort rolePersistencePort;
 
+    @Mock
+    private RoleValidatorUseCase roleValidatorUseCase;
+
     @InjectMocks
     private RoleUseCase roleUseCase;
 
@@ -30,9 +34,22 @@ class RoleUseCaseTest {
 
     @Test
     void save() {
+        doNothing().when(roleValidatorUseCase).validateName(roleModel.getName());
+        doNothing().when(roleValidatorUseCase).validateDescription(roleModel.getDescription());
         doNothing().when(rolePersistencePort).save(roleModel);
         roleUseCase.save(roleModel);
         verify(rolePersistencePort, times(1)).save(roleModel);
+    }
+
+    @Test
+    void save_RoleNotFound() {
+        when(rolePersistencePort.findByName(roleModel.getName())).thenReturn(roleModel);
+
+        assertThrows(RoleAlreadyExist.class, ()  -> {
+            roleUseCase.save(roleModel);
+        });
+
+        verify(rolePersistencePort, never()).save(roleModel);
     }
 
 }

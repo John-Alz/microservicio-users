@@ -8,4 +8,6 @@ public interface RolePersistencePort {
     void save(RoleModel roleModel);
 
     RoleModel roleExists(Long roleId);
+
+    RoleModel findByName(String roleName);
 }

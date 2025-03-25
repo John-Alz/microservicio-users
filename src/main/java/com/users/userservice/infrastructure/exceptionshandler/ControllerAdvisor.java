@@ -40,4 +40,19 @@ public class ControllerAdvisor {
         return ResponseEntity.badRequest().body(new ExceptionResponse("El Rol no existe", LocalDateTime.now()));
     }
 
+    @ExceptionHandler(RoleAlreadyExist.class)
+    public ResponseEntity<ExceptionResponse> handleRoleAlreadyExist(RoleAlreadyExist exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse("El Rol existe", LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(MaxLengthNameRole.class)
+    public ResponseEntity<ExceptionResponse> handleMaxLengthNameRole(MaxLengthNameRole exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse("El nombre del rol debe ser menor a 20 caracteres", LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(MaxLengthDescriptionRole.class)
+    public ResponseEntity<ExceptionResponse> handleMaxLengthDescriptionRole(MaxLengthDescriptionRole exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse("La descripcion del rol debe ser menor a 50 caracteres", LocalDateTime.now()));
+    }
+
 }

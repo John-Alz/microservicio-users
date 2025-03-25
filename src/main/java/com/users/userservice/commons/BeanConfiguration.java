@@ -5,6 +5,7 @@ import com.users.userservice.domain.ports.input.UserServicePort;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
 import com.users.userservice.domain.ports.output.UserPersistencePort;
 import com.users.userservice.domain.usecases.RoleUseCase;
+import com.users.userservice.domain.usecases.RoleValidatorUseCase;
 import com.users.userservice.domain.usecases.UserUseCase;
 import com.users.userservice.domain.usecases.UserValidatorUseCase;
 import com.users.userservice.infrastructure.adapters.persistence.RolePersistenceAdapter;
@@ -45,8 +46,13 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public RoleServicePort roleServicePort(RolePersistencePort rolePersistencePort) {
-        return new RoleUseCase(rolePersistencePort());
+    public RoleServicePort roleServicePort(RolePersistencePort rolePersistencePort, RoleValidatorUseCase roleValidatorUseCase) {
+        return new RoleUseCase(rolePersistencePort, roleValidatorUseCase);
+    }
+
+    @Bean
+    public RoleValidatorUseCase roleValidatorUseCase() {
+        return new RoleValidatorUseCase();
     }
 
     @Bean
