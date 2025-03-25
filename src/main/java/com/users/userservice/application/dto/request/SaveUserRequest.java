@@ -1,6 +1,5 @@
 package com.users.userservice.application.dto.request;
 
-import com.users.userservice.domain.model.RoleModel;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;

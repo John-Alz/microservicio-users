@@ -1,6 +1,5 @@
 package com.users.userservice.infrastructure.entities;
 
-import com.users.userservice.domain.model.RoleModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -8,7 +8,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-import javax.management.relation.Role;
 
 @Mapper(componentModel = "spring")
 public interface UserEntityMapper {

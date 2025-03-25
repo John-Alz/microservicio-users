@@ -16,7 +16,6 @@ import com.users.userservice.infrastructure.repositories.mysql.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
@@ -30,8 +29,8 @@ public class BeanConfiguration {
     private final RoleEntityMapper roleEntityMapper;
 
     @Bean
-    public UserServicePort userServicePort(UserPersistencePort userPersistencePort, UserValidatorUseCase userValidatorUseCase) {
-        return new UserUseCase(userPersistencePort, userValidatorUseCase);
+    public UserServicePort userServicePort(UserPersistencePort userPersistencePort, RolePersistencePort rolePersistencePort, UserValidatorUseCase userValidatorUseCase) {
+        return new UserUseCase(userPersistencePort, rolePersistencePort, userValidatorUseCase);
     }
 
     @Bean

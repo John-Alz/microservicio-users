@@ -6,7 +6,6 @@ import com.users.userservice.domain.model.RoleModel;
 import com.users.userservice.domain.model.UserModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Named;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)

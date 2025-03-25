@@ -35,4 +35,9 @@ public class ControllerAdvisor {
         return ResponseEntity.badRequest().body(new ExceptionResponse(exception.getMessage(), LocalDateTime.now()));
     }
 
+    @ExceptionHandler(RoleNoExistException.class)
+    public ResponseEntity<ExceptionResponse> handleRoleNoExistException(RoleNoExistException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse("El Rol no existe", LocalDateTime.now()));
+    }
+
 }

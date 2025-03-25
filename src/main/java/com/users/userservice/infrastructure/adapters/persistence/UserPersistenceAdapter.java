@@ -21,9 +21,6 @@ public class UserPersistenceAdapter implements UserPersistencePort {
     @Override
     public void save(UserModel user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println("Guardando usuario: " + user.getFirstName());
-        System.out.println("Guardando role: " + user.getRole().getId());
-        System.out.println("Guardando role: " + user.getRole().getName());
         userRepository.save(userEntityMapper.modelToEntity(user));
     }
 }

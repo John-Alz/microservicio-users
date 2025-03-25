@@ -8,7 +8,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,8 +19,12 @@ public class RolePersistenceAdapter implements RolePersistencePort {
 
     @Override
     public void save(RoleModel roleModel) {
-        System.out.println("Guardando rol: " + roleModel);
         roleRepository.save(roleEntityMapper.modelToEntity(roleModel));
+    }
+
+    @Override
+    public RoleModel roleExists(Long roleId) {
+        return roleEntityMapper.entityToModel(roleRepository.findById(roleId).orElse(null));
     }
 
 
