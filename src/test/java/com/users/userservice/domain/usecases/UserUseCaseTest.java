@@ -30,7 +30,6 @@ class UserUseCaseTest {
     private UserValidatorUseCase userValidatorUseCase;
 
 
-
     @InjectMocks
     private UserUseCase userUseCase;
 

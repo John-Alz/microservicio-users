@@ -36,6 +36,8 @@ public class UserUseCase implements UserServicePort {
        userValidatorUseCase.validateEmptyPassword(user.getPassword());
        userValidatorUseCase.validateAge(user.getBirthDate());
 
+       user.setPassword(userPersistencePort.passwordEncode(user.getPassword()));
+
         userPersistencePort.save(user);
     }
 }

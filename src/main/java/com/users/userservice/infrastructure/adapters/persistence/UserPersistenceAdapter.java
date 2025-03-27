@@ -20,7 +20,11 @@ public class UserPersistenceAdapter implements UserPersistencePort {
 
     @Override
     public void save(UserModel user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(userEntityMapper.modelToEntity(user));
+    }
+
+    @Override
+    public String passwordEncode(String password) {
+        return passwordEncoder.encode(password);
     }
 }

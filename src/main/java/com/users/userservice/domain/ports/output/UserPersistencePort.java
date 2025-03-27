@@ -5,5 +5,7 @@ import com.users.userservice.domain.model.UserModel;
 public interface UserPersistencePort {
 
     void save(UserModel user);
+    String passwordEncode(String password);
+
 
 }
