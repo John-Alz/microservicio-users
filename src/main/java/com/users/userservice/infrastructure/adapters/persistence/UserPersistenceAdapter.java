@@ -27,4 +27,9 @@ public class UserPersistenceAdapter implements UserPersistencePort {
     public String passwordEncode(String password) {
         return passwordEncoder.encode(password);
     }
+
+    @Override
+    public boolean passwordDecode(String passwordRequest, String passwordUserDb) {
+        return passwordEncoder.matches(passwordRequest, passwordUserDb);
+    }
 }

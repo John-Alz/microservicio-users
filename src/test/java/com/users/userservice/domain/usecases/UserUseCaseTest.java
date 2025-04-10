@@ -5,6 +5,7 @@ import com.users.userservice.domain.model.RoleModel;
 import com.users.userservice.domain.model.UserModel;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
 import com.users.userservice.domain.ports.output.UserPersistencePort;
+import com.users.userservice.domain.utils.constants.validate.UserValidatorUseCase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

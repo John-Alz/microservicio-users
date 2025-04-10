@@ -1,4 +1,4 @@
-package com.users.userservice.domain.usecases;
+package com.users.userservice.domain.utils.constants.validate;
 
 import com.users.userservice.domain.exceptions.EmptyException;
 import com.users.userservice.domain.exceptions.MaxLengthDescriptionRole;

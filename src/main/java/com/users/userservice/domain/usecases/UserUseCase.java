@@ -6,6 +6,7 @@ import com.users.userservice.domain.model.UserModel;
 import com.users.userservice.domain.ports.input.UserServicePort;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
 import com.users.userservice.domain.ports.output.UserPersistencePort;
+import com.users.userservice.domain.utils.constants.validate.UserValidatorUseCase;
 
 public class UserUseCase implements UserServicePort {
 

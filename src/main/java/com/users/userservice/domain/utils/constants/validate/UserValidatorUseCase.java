@@ -1,4 +1,4 @@
-package com.users.userservice.domain.usecases;
+package com.users.userservice.domain.utils.constants.validate;
 
 import com.users.userservice.domain.exceptions.*;
 import com.users.userservice.domain.utils.constants.DomainConstants;
