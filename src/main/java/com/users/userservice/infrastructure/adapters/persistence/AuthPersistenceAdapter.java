@@ -19,9 +19,7 @@ public class AuthPersistenceAdapter implements AuthPersistencePort {
 
     @Override
     public UserModel userExist(String email) {
-        System.out.println("Email adpater: " + email);
         UserEntity user = userRepository.findByEmail(email).orElse(null);
-//        System.out.println(user.getEmail());
         return userEntityMapper.entityToModel(user);
     }
 }

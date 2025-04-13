@@ -3,6 +3,7 @@ package com.users.userservice.infrastructure.endpoints.rest;
 import com.users.userservice.application.dto.request.SaveRoleRequest;
 import com.users.userservice.application.dto.response.SaveRoleResponse;
 import com.users.userservice.application.services.IRoleService;
+import com.users.userservice.infrastructure.utils.constants.InfrastructureConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/role")
 @RequiredArgsConstructor
-@Tag(name = "Roles", description = "Operaciones relacionadas con la gestión de roles")
+@Tag(name = InfrastructureConstants.TAG_ROLES_CONTROLLER, description = InfrastructureConstants.DESC_ROLES_CONTROLLER)
 public class RoleController {
 
     private final IRoleService roleService;

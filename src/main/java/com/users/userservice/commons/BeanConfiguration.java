@@ -62,8 +62,8 @@ public class BeanConfiguration {
     }
 
     @Bean
-    public AuthServicePort authServicePort (AuthPersistencePort authPersistencePort, UserPersistencePort userPersistencePort) {
-        return new AuthUseCase(authPersistencePort, userPersistencePort);
+    public AuthServicePort authServicePort ( UserPersistencePort userPersistencePort) {
+        return new AuthUseCase(userPersistencePort);
     }
 
 

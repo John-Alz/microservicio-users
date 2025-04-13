@@ -60,8 +60,8 @@ public class ControllerAdvisor {
         return ResponseEntity.badRequest().body(new ExceptionResponse("Este correo ya esta asociado a otro usuario.", LocalDateTime.now()));
     }
 
-    @ExceptionHandler(CredentialsInvalidException.class)
-    public ResponseEntity<ExceptionResponse> handleCredentialsInvalidException(CredentialsInvalidException exception) {
+    @ExceptionHandler(EmailInvalidException.class)
+    public ResponseEntity<ExceptionResponse> handleCredentialsInvalidException(EmailInvalidException exception) {
         return ResponseEntity.badRequest().body(new ExceptionResponse("Este email no corresponde a ningun usuairo.", LocalDateTime.now()));
     }
 
