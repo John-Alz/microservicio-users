@@ -28,7 +28,7 @@ public class JwtUtils {
 
         Algorithm algorithm = Algorithm.HMAC256(this.privateKey);
 
-        String email = authentication.getPrincipal().toString();
+        String id = authentication.getPrincipal().toString();
 
         String authorities = authentication.getAuthorities()
                 .stream()
@@ -37,7 +37,7 @@ public class JwtUtils {
 
         return JWT.create()
                 .withIssuer(this.userGenerator)
-                .withSubject(email)
+                .withSubject(id)
                 .withClaim("authorities", authorities)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 3600000))
