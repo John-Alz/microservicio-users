@@ -1,9 +1,12 @@
 package com.users.userservice.application.services.impl;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.users.userservice.application.dto.request.LoginUserRequest;
 import com.users.userservice.application.dto.response.LoginUserResponse;
 import com.users.userservice.application.services.IAuthService;
 import com.users.userservice.application.utils.JwtUtils;
+import com.users.userservice.application.utils.constants.ApplicationConstants;
 import com.users.userservice.domain.model.UserModel;
 import com.users.userservice.domain.ports.input.AuthServicePort;
 import lombok.RequiredArgsConstructor;
@@ -30,12 +33,12 @@ public class AuthServiceImpl implements IAuthService {
         Authentication authentication = this.authenticate(email, password);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String accessToken = jwtUtils.createToken(authentication);
-        return new LoginUserResponse(email, "Usuario logueado.", accessToken);
+        return new LoginUserResponse(email, ApplicationConstants.LOGIN_MESSAGE, accessToken);
     }
 
     public Authentication authenticate (String email, String password) {
         UserModel user = authServicePort.login(email, password);
         List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getName()));
-        return new UsernamePasswordAuthenticationToken(email, password, authorities);
+        return new UsernamePasswordAuthenticationToken(user.getId(), password, authorities);
     }
 }

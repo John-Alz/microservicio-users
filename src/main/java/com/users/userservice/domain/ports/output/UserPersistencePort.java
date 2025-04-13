@@ -9,5 +9,5 @@ public interface UserPersistencePort {
 
     boolean passwordDecode(String passwordRequest, String passwordUserDb);
 
-
+    UserModel userExistWhitEmail(String email);
 }

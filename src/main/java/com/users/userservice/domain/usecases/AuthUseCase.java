@@ -20,8 +20,7 @@ public class AuthUseCase implements AuthServicePort {
     @Override
     public UserModel login(String email, String password) {
 
-        UserModel userFound = authPersistencePort.userExist(email);
-        System.out.println(userFound.getRole().getName());
+        UserModel userFound = userPersistencePort.userExistWhitEmail(email);
 
         if (userFound == null) {
             throw new CredentialsInvalidException();

@@ -7,4 +7,5 @@ public interface IAuthService {
 
     LoginUserResponse loginUser(LoginUserRequest loginUserRequest);
 
+
 }

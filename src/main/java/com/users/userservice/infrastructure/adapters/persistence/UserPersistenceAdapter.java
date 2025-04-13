@@ -32,4 +32,9 @@ public class UserPersistenceAdapter implements UserPersistencePort {
     public boolean passwordDecode(String passwordRequest, String passwordUserDb) {
         return passwordEncoder.matches(passwordRequest, passwordUserDb);
     }
+
+    @Override
+    public UserModel userExistWhitEmail(String email) {
+        return userEntityMapper.entityToModel(userRepository.findByEmail(email).orElse(null));
+    }
 }

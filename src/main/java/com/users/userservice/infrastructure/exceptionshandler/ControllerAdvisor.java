@@ -55,6 +55,11 @@ public class ControllerAdvisor {
         return ResponseEntity.badRequest().body(new ExceptionResponse("La descripcion del rol debe ser menor a 50 caracteres", LocalDateTime.now()));
     }
 
+    @ExceptionHandler(UserWithEmailExistException.class)
+    public ResponseEntity<ExceptionResponse> handleUserWithEmailExistException(UserWithEmailExistException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse("Este correo ya esta asociado a otro usuario.", LocalDateTime.now()));
+    }
+
     @ExceptionHandler(CredentialsInvalidException.class)
     public ResponseEntity<ExceptionResponse> handleCredentialsInvalidException(CredentialsInvalidException exception) {
         return ResponseEntity.badRequest().body(new ExceptionResponse("Este email no corresponde a ningun usuairo.", LocalDateTime.now()));
