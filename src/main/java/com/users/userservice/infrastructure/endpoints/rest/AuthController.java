@@ -1,9 +1,7 @@
 package com.users.userservice.infrastructure.endpoints.rest;
 
 import com.users.userservice.application.dto.request.LoginUserRequest;
-import com.users.userservice.application.dto.request.SaveUserRequest;
 import com.users.userservice.application.dto.response.LoginUserResponse;
-import com.users.userservice.application.dto.response.SaveUserResponse;
 import com.users.userservice.application.services.IAuthService;
 import com.users.userservice.infrastructure.utils.constants.InfrastructureConstants;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,7 +10,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

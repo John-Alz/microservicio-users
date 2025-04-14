@@ -1,7 +1,5 @@
 package com.users.userservice.application.services.impl;
 
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.users.userservice.application.dto.request.LoginUserRequest;
 import com.users.userservice.application.dto.response.LoginUserResponse;
 import com.users.userservice.application.services.IAuthService;

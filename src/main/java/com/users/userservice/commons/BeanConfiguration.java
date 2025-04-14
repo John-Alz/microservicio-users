@@ -3,7 +3,6 @@ package com.users.userservice.commons;
 import com.users.userservice.domain.ports.input.AuthServicePort;
 import com.users.userservice.domain.ports.input.RoleServicePort;
 import com.users.userservice.domain.ports.input.UserServicePort;
-import com.users.userservice.domain.ports.output.AuthPersistencePort;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
 import com.users.userservice.domain.ports.output.UserPersistencePort;
 import com.users.userservice.domain.usecases.*;
