@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,21 +36,26 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
 
         String jwtToken = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if(jwtToken != null) {
-            jwtToken = jwtToken.substring(7);
+        try{
+            if(jwtToken != null) {
+                jwtToken = jwtToken.substring(7);
 
-            DecodedJWT decodedJWT = jwtUtils.verifyToken(jwtToken);
-            String email = jwtUtils.extractEmail(decodedJWT);
-            String role = "ROLE_" + jwtUtils.getEspecificClaim(decodedJWT, "authorities").asString();
-            Collection<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(role));
-            SecurityContext context = SecurityContextHolder.getContext(); //obtener conetxto
-            Authentication authentication = new UsernamePasswordAuthenticationToken(email, null, authorities); // generar auth
-            context.setAuthentication(authentication); // seteamos auth en context
-            SecurityContextHolder.setContext(context); // seteamos en context
+                DecodedJWT decodedJWT = jwtUtils.verifyToken(jwtToken);
+                String email = jwtUtils.extractEmail(decodedJWT);
+                String role = "ROLE_" + jwtUtils.getEspecificClaim(decodedJWT, "authorities").asString();
+                Collection<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(role));
+                SecurityContext context = SecurityContextHolder.getContext(); //obtener conetxto
+                Authentication authentication = new UsernamePasswordAuthenticationToken(email, null, authorities); // generar auth
+                context.setAuthentication(authentication); // seteamos auth en context
+                SecurityContextHolder.setContext(context); // seteamos en context
+            }
 
+            filterChain.doFilter(request, response);
+        } catch (Exception e) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"message\": \"El token no es válido.\", \"timestamp\": \"" + LocalDateTime.now() + "\"}");
         }
-
-        filterChain.doFilter(request, response);
 
     }
 }
