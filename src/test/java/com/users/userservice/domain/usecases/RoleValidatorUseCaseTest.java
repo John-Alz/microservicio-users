@@ -4,7 +4,7 @@ import com.users.userservice.domain.exceptions.EmptyException;
 import com.users.userservice.domain.exceptions.MaxLengthDescriptionRole;
 import com.users.userservice.domain.exceptions.MaxLengthNameRole;
 import com.users.userservice.domain.utils.constants.DomainConstants;
-import org.junit.jupiter.api.AfterEach;
+import com.users.userservice.domain.utils.constants.validate.RoleValidatorUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

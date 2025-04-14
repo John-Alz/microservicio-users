@@ -3,12 +3,12 @@ package com.users.userservice.domain.usecases;
 import com.users.userservice.domain.exceptions.RoleAlreadyExist;
 import com.users.userservice.domain.model.RoleModel;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
+import com.users.userservice.domain.utils.constants.validate.RoleValidatorUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Mockito;
 
 import static org.mockito.Mockito.*;
 

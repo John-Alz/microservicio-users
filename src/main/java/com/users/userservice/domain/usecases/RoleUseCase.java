@@ -4,6 +4,7 @@ import com.users.userservice.domain.exceptions.RoleAlreadyExist;
 import com.users.userservice.domain.model.RoleModel;
 import com.users.userservice.domain.ports.input.RoleServicePort;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
+import com.users.userservice.domain.utils.constants.validate.RoleValidatorUseCase;
 
 public class RoleUseCase implements RoleServicePort {
 

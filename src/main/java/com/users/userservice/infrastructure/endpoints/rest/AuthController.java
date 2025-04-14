@@ -1,54 +1,48 @@
 package com.users.userservice.infrastructure.endpoints.rest;
 
-import com.users.userservice.application.dto.request.SaveRoleRequest;
-import com.users.userservice.application.dto.response.SaveRoleResponse;
-import com.users.userservice.application.services.IRoleService;
+import com.users.userservice.application.dto.request.LoginUserRequest;
+import com.users.userservice.application.dto.response.LoginUserResponse;
+import com.users.userservice.application.services.IAuthService;
 import com.users.userservice.infrastructure.utils.constants.InfrastructureConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/role")
+@RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
-@Tag(name = InfrastructureConstants.TAG_ROLES_CONTROLLER, description = InfrastructureConstants.DESC_ROLES_CONTROLLER)
-public class RoleController {
+@Tag(name = InfrastructureConstants.TAG_AUTH_CONTROLLER, description = InfrastructureConstants.DESC_AUTH_CONTROLLER)
+public class AuthController {
 
-    private final IRoleService roleService;
+    private final IAuthService authService;
 
     @PostMapping
     @Operation(
-            summary = "Crear un nuevo role.",
-            description = "Este endpoint permite la creación de un nuevo role en el sistema." +
-                    "El role debe incluir informacion como nombre y descripcion.",
-            tags = {"Crear role"},
+            summary = "Loguearse en el sistema",
+            description = "Este endpoint permite loguearse como usuario en el sistema."
+                    + "El usuario debe loguearse con email y contraseña.",
+            tags = {"login"},
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Datos necesarios para crear un role.",
+                    description = "Datos necesarios para loguearse.",
                     required = true,
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(
-                                    implementation = SaveRoleRequest.class
-                            )
+                            schema = @Schema(implementation = LoginUserRequest.class)
                     )
             ),
             responses = {
                     @ApiResponse(
-                            responseCode = "201",
-                            description = "Role Creado",
+                            responseCode = "200",
+                            description = "Usuario logueado",
                             content = @Content(
                                     mediaType = "application/json",
-                                    schema = @Schema(implementation = SaveRoleResponse.class)
+                                    schema = @Schema(implementation = LoginUserResponse.class)
                             )
                     ),
                     @ApiResponse(
@@ -62,9 +56,10 @@ public class RoleController {
                             content = @Content(mediaType = "application/json")
                     )
             }
+
     )
-    public ResponseEntity<SaveRoleResponse> save(@Valid @RequestBody SaveRoleRequest saveRoleRequest) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(roleService.saveRole(saveRoleRequest));
+    public ResponseEntity<LoginUserResponse> login(@RequestBody  LoginUserRequest loginUserRequest) {
+        return ResponseEntity.status(HttpStatus.OK).body(authService.loginUser(loginUserRequest));
     }
 
 }

@@ -1,11 +1,13 @@
 package com.users.userservice.domain.usecases;
 
 import com.users.userservice.domain.exceptions.RoleNoExistException;
+import com.users.userservice.domain.exceptions.UserWithEmailExistException;
 import com.users.userservice.domain.model.RoleModel;
 import com.users.userservice.domain.model.UserModel;
 import com.users.userservice.domain.ports.input.UserServicePort;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
 import com.users.userservice.domain.ports.output.UserPersistencePort;
+import com.users.userservice.domain.utils.constants.validate.UserValidatorUseCase;
 
 public class UserUseCase implements UserServicePort {
 
@@ -23,9 +25,14 @@ public class UserUseCase implements UserServicePort {
     public void save(UserModel user) {
 
        RoleModel roleFound = rolePersistencePort.roleExists(user.getRole().getId());
+       UserModel userFound = userPersistencePort.userExistWhitEmail(user.getEmail());
        if (roleFound == null) {
            throw new RoleNoExistException();
        }
+
+        if (userFound != null) {
+            throw new UserWithEmailExistException();
+        }
 
        userValidatorUseCase.validateEmptyFirstName(user.getFirstName());
        userValidatorUseCase.validateEmptyLastName(user.getLastName());

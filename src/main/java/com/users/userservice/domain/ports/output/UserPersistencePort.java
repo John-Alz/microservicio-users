@@ -7,5 +7,7 @@ public interface UserPersistencePort {
     void save(UserModel user);
     String passwordEncode(String password);
 
+    boolean passwordDecode(String passwordRequest, String passwordUserDb);
 
+    UserModel userExistWhitEmail(String email);
 }

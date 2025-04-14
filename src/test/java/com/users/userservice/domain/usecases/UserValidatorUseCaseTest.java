@@ -2,7 +2,7 @@ package com.users.userservice.domain.usecases;
 
 import com.users.userservice.domain.exceptions.*;
 import com.users.userservice.domain.utils.constants.DomainConstants;
-import org.junit.jupiter.api.AfterEach;
+import com.users.userservice.domain.utils.constants.validate.UserValidatorUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

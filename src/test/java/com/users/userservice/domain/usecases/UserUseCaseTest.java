@@ -1,10 +1,13 @@
 package com.users.userservice.domain.usecases;
 
+import com.users.userservice.domain.exceptions.EmailInvalidException;
 import com.users.userservice.domain.exceptions.RoleNoExistException;
+import com.users.userservice.domain.exceptions.UserWithEmailExistException;
 import com.users.userservice.domain.model.RoleModel;
 import com.users.userservice.domain.model.UserModel;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
 import com.users.userservice.domain.ports.output.UserPersistencePort;
+import com.users.userservice.domain.utils.constants.validate.UserValidatorUseCase;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -80,4 +83,20 @@ class UserUseCaseTest {
         verify(userPersistencePort, never()).save(newUser);
 
     }
+
+    @Test
+    void save_EmailNotFound() {
+        when(rolePersistencePort.roleExists(newUser.getRole().getId())).thenReturn(roleModel);
+        when(userPersistencePort.userExistWhitEmail(newUser.getEmail())).thenReturn(newUser);
+
+        assertThrows(UserWithEmailExistException.class, () -> {
+            userUseCase.save(newUser);
+        });
+
+        verify(userPersistencePort, times(1)).userExistWhitEmail(newUser.getEmail());
+
+        verify(userPersistencePort, never()).save(newUser);
+
+    }
+
 }

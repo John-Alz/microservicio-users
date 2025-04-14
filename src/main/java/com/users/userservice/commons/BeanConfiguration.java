@@ -1,13 +1,13 @@
 package com.users.userservice.commons;
 
+import com.users.userservice.domain.ports.input.AuthServicePort;
 import com.users.userservice.domain.ports.input.RoleServicePort;
 import com.users.userservice.domain.ports.input.UserServicePort;
 import com.users.userservice.domain.ports.output.RolePersistencePort;
 import com.users.userservice.domain.ports.output.UserPersistencePort;
-import com.users.userservice.domain.usecases.RoleUseCase;
-import com.users.userservice.domain.usecases.RoleValidatorUseCase;
-import com.users.userservice.domain.usecases.UserUseCase;
-import com.users.userservice.domain.usecases.UserValidatorUseCase;
+import com.users.userservice.domain.usecases.*;
+import com.users.userservice.domain.utils.constants.validate.RoleValidatorUseCase;
+import com.users.userservice.domain.utils.constants.validate.UserValidatorUseCase;
 import com.users.userservice.infrastructure.adapters.persistence.RolePersistenceAdapter;
 import com.users.userservice.infrastructure.adapters.persistence.UserPersistenceAdapter;
 import com.users.userservice.infrastructure.mappers.RoleEntityMapper;
@@ -58,6 +58,11 @@ public class BeanConfiguration {
     @Bean
     public RolePersistencePort rolePersistencePort() {
         return new RolePersistenceAdapter(roleRepository, roleEntityMapper);
+    }
+
+    @Bean
+    public AuthServicePort authServicePort ( UserPersistencePort userPersistencePort) {
+        return new AuthUseCase(userPersistencePort);
     }
 
 
