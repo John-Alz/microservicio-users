@@ -27,9 +27,11 @@ import java.util.List;
 public class SecurityConfig {
 
     private final JwtUtils jwtUtils;
+    private final CustomAccessDeniedHandler accessDeniedHandler;
 
-    public SecurityConfig(JwtUtils jwtUtils) {
+    public SecurityConfig(JwtUtils jwtUtils, CustomAccessDeniedHandler accessDeniedHandler) {
         this.jwtUtils = jwtUtils;
+        this.accessDeniedHandler = accessDeniedHandler;
     }
 
     @Bean
@@ -42,10 +44,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(http -> {
                     http.requestMatchers(HttpMethod.POST, "/api/v1/auth").permitAll();
 
-                    http.requestMatchers(HttpMethod.POST, "/api/v1/user").hasRole("admin");
+                    http.requestMatchers(HttpMethod.POST, "/api/v1/user").hasRole("ADMIN");
                     http.anyRequest().permitAll();
                 })
                 .addFilterBefore(new JwtAuthenticationFilter(jwtUtils), BasicAuthenticationFilter.class)
+                .exceptionHandling(exception ->
+                        exception.accessDeniedHandler(accessDeniedHandler))
                 .build();
     }
 
