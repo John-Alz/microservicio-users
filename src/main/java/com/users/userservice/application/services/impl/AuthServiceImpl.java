@@ -1,5 +1,6 @@
 package com.users.userservice.application.services.impl;
 
+import com.users.userservice.application.dto.auth.AuthInfo;
 import com.users.userservice.application.dto.request.LoginUserRequest;
 import com.users.userservice.application.dto.response.LoginUserResponse;
 import com.users.userservice.application.services.IAuthService;
@@ -37,6 +38,7 @@ public class AuthServiceImpl implements IAuthService {
     public Authentication authenticate (String email, String password) {
         UserModel user = authServicePort.login(email, password);
         List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(user.getRole().getName()));
-        return new UsernamePasswordAuthenticationToken(user.getId(), password, authorities);
+        AuthInfo authInfo = new AuthInfo(user.getId(), email);
+        return new UsernamePasswordAuthenticationToken(authInfo, password, authorities);
     }
 }
