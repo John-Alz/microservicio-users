@@ -36,7 +36,6 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
 
         String jwtToken = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        try{
             if(jwtToken != null) {
                 jwtToken = jwtToken.substring(7);
 
@@ -51,11 +50,7 @@ public class JwtAuthenticationFilter  extends OncePerRequestFilter {
             }
 
             filterChain.doFilter(request, response);
-        } catch (Exception e) {
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.setContentType("application/json");
-            response.getWriter().write("{\"message\": \"El token no es válido.\", \"timestamp\": \"" + LocalDateTime.now() + "\"}");
-        }
+
 
     }
 }
