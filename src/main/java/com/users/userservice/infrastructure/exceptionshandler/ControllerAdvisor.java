@@ -67,7 +67,7 @@ public class ControllerAdvisor {
 
     @ExceptionHandler(PasswordInvalidException.class)
     public ResponseEntity<ExceptionResponse> handlePasswordInvalidException(PasswordInvalidException exception) {
-        return ResponseEntity.badRequest().body(new ExceptionResponse("Contrasena inválidaa", LocalDateTime.now()));
+        return ResponseEntity.badRequest().body(new ExceptionResponse("Contrasena inválida", LocalDateTime.now()));
     }
 
 }
